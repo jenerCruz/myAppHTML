@@ -1,0 +1,7 @@
+{
+  "name": "MyAppHTML",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
