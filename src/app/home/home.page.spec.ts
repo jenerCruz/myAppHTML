@@ -1,18 +1,30 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+// src/app/home/home.page.ts
 
-import { HomePage } from './home.page';
+import { Component, OnInit } from '@angular/core';
+import { Capacitor } from '@capacitor/core';
+// Importamos InAppBrowser si decides usarlo para cargar el HTML,
+// pero usaremos window.location.href para el Webview local simple.
 
-describe('HomePage', () => {
-  let component: HomePage;
-  let fixture: ComponentFixture<HomePage>;
+@Component({
+  selector: 'app-home',
+  templateUrl: 'home.page.html',
+  styleUrls: ['home.page.scss'],
+})
+export class HomePage implements OnInit {
 
-  beforeEach(async () => {
-    fixture = TestBed.createComponent(HomePage);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  constructor() {}
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+  ngOnInit() {
+    // ⚠️ Importante: Esto solo funciona en el dispositivo/emulador (no en el navegador)
+    if (Capacitor.isNativePlatform()) {
+      // Obtenemos la URL base nativa que apunta a la carpeta 'assets'
+      // La ruta para el archivo 'custom.html' es 'assets/custom.html'
+      // En un APK, esta URL será algo como 'capacitor://localhost/_capacitor_assets/custom.html'
+      const customHtmlPath = 'assets/custom.html';
+      
+      // Reemplazamos la vista actual del Webview con tu HTML personalizado.
+      // Esto 'secuestra' la vista principal de Ionic y muestra tu HTML.
+      window.location.href = customHtmlPath;
+    }
+  }
+}
