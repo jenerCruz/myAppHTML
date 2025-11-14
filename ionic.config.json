@@ -1,7 +1,8 @@
 {
-  "name": "MyAppHTML",
+  "name": "myAppHTML",
   "integrations": {
     "capacitor": {}
   },
-  "type": "angular-standalone"
+  "type": "angular",
+  "id": "08382d29"
 }
